@@ -238,7 +238,17 @@
       object-fit: contain;
     }
 
-    .exchange-logo:hover img {
+    /* CORREÇÃO: Aplicar o efeito de cor também em SVGs */
+    .exchange-logo svg {
+      max-width: 100px;
+      max-height: 50px;
+      margin-bottom: 10px;
+      filter: grayscale(100%) brightness(80%);
+      transition: filter 0.3s;
+    }
+
+    .exchange-logo:hover img,
+    .exchange-logo:hover svg {
       filter: grayscale(0%) brightness(100%);
     }
 
