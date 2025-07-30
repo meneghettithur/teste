@@ -235,6 +235,7 @@
       margin-bottom: 10px;
       filter: grayscale(100%) brightness(80%);
       transition: filter 0.3s;
+      object-fit: contain;
     }
 
     .exchange-logo:hover img {
@@ -811,7 +812,11 @@
             <span>Binance</span>
           </div>
           <div class="exchange-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Coinbase_logo.png" alt="Coinbase">
+            <!-- Logo local da Coinbase -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000" width="100" height="50">
+              <path fill="#0052FF" d="M1000,0c552.26,0,1000,447.74,1000,1000s-447.74,1000-1000,1000S0,1552.26,0,1000,447.74,0,1000,0Z"/>
+              <path fill="#FFF" d="M577.72,836.18H1422.24V1076.6H577.72V836.18ZM1250.15,1272.72l99.74,99.74,204.46-204.46L1349.89,969l-99.74,99.74,49.87,49.87,49.87,49.87-49.87,49.87-49.87,49.87-49.87-49.87-49.87-49.87,99.74-99.74,99.74-99.74,204.46,204.46-99.74,99.74-99.74,99.74-204.46-204.46,99.74-99.74Z"/>
+            </svg>
             <span>Coinbase</span>
           </div>
           <div class="exchange-logo">
