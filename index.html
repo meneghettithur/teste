@@ -1,0 +1,1257 @@
+separe o css em um arquivo styles.css,
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zion - Automação de Trades</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --background: #0a0a0a;
+      --primary: #00e0ff;
+      --secondary: #ae00ff;
+      --text-light: #ffffff;
+      --text-muted: #999999;
+      --card-bg: #1a1a1a;
+      --testimonial-bg: #151515;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--text-light);
+      scroll-behavior: smooth;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #111;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      transition: color 0.3s;
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    section {
+      padding: 4rem 2rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem;
+      background: linear-gradient(to right, rgba(0, 224, 255, 0.1), rgba(174, 0, 255, 0.1));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(174, 0, 255, 0.1) 0%, transparent 70%);
+      z-index: -1;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border: none;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 0.5rem;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--background);
+    }
+
+    .btn-primary:hover {
+      background-color: #00bcd4;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 224, 255, 0.3);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-light);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(0, 224, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      padding: 2rem;
+      border-radius: 1rem;
+      color: var(--text-muted);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .highlight {
+      color: var(--secondary);
+    }
+
+    /* Seção de Integrações */
+    .integrations {
+      text-align: center;
+    }
+    
+    .integration-types {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 2rem auto;
+      max-width: 1000px;
+      flex-wrap: wrap;
+    }
+    
+    .integration-type {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 450px;
+    }
+    
+    .integration-type h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .integrations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem auto;
+    }
+
+    .exchange-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #1f1f1f;
+      padding: 1.5rem;
+      border-radius: 10px;
+      transition: all 0.3s;
+      height: 130px;
+    }
+
+    .exchange-logo:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(174, 0, 255, 0.2);
+      border: 1px solid rgba(174, 0, 255, 0.3);
+    }
+
+    .exchange-logo img {
+      max-width: 100px;
+      max-height: 50px;
+      margin-bottom: 10px;
+      filter: grayscale(100%) brightness(80%);
+      transition: filter 0.3s;
+    }
+
+    .exchange-logo:hover img {
+      filter: grayscale(0%) brightness(100%);
+    }
+
+    .exchange-logo span {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    /* Seção Sobre */
+    .about-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .dashboard-mockup {
+      flex: 1;
+      min-width: 300px;
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(174, 0, 255, 0.2);
+    }
+
+    .dashboard-mockup::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(0, 224, 255, 0.05), rgba(174, 0, 255, 0.05));
+      z-index: 1;
+    }
+
+    .dashboard-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+      background: #121212;
+      height: 350px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .dashboard-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .dashboard-stats {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      min-width: 100px;
+    }
+
+    .stat-value {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .chart-container {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .chart {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .chart-path {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      stroke: var(--primary);
+      stroke-width: 2;
+      fill: none;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: drawChart 8s forwards;
+    }
+
+    @keyframes drawChart {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    /* Seção de Funcionalidades */
+    .features {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), 
+                  radial-gradient(circle at top right, rgba(0, 224, 255, 0.05) 0%, transparent 30%),
+                  radial-gradient(circle at bottom left, rgba(174, 0, 255, 0.05) 0%, transparent 30%);
+      padding: 5rem 2rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 3rem auto 0;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+
+    .feature-card h3 {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .feature-card ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 1.5rem;
+    }
+
+    .feature-card li {
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .feature-card li i {
+      color: var(--primary);
+      min-width: 24px;
+      margin-top: 4px;
+    }
+
+    /* Seção de Planos */
+    .plans {
+      text-align: center;
+    }
+
+    .plans-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 3rem auto;
+    }
+
+    .plan-card {
+      background: var(--card-bg);
+      padding: 2.5rem 2rem;
+      border-radius: 1rem;
+      flex: 1;
+      min-width: 280px;
+      max-width: 350px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .popular-plan {
+      border: 2px solid var(--secondary);
+      transform: scale(1.05);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 15px;
+      right: -30px;
+      background: var(--secondary);
+      color: white;
+      padding: 5px 30px;
+      transform: rotate(45deg);
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .plan-card h3 {
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+    }
+
+    .plan-price {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 1.5rem 0;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .plan-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+    }
+
+    .plan-card li {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .plan-card li i {
+      color: var(--primary);
+      min-width: 24px;
+    }
+
+    /* Seção de Depoimentos */
+    .testimonials {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), 
+                  radial-gradient(circle at top left, rgba(0, 224, 255, 0.05) 0%, transparent 30%),
+                  radial-gradient(circle at bottom right, rgba(174, 0, 255, 0.05) 0%, transparent 30%);
+      padding: 5rem 2rem;
+    }
+
+    .testimonials-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 3rem auto 0;
+    }
+
+    .testimonial-card {
+      background: var(--testimonial-bg);
+      padding: 2rem;
+      border-radius: 1rem;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .testimonial-card::before {
+        content: "“";  /* Usando aspa curva de abertura */
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 5rem;
+        color: rgba(174, 0, 255, 0.2);
+        font-family: Georgia, serif; /* Fonte mais adequada para aspas */
+        line-height: 1;
+        z-index: 1; /* Garante que fique atrás do texto */
+    }
+    .testimonial-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: var(--text-light);
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .author-info h4 {
+      color: var(--text-light);
+      margin-bottom: 0.2rem;
+    }
+
+    .author-info p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .testimonial-rating {
+      color: gold;
+      margin: 1rem 0;
+      font-size: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 2rem 2rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      background-color: #111;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .footer-social a {
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .footer-social a:hover {
+      color: var(--primary);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+      position: relative;
+      display: inline-block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      margin: 0.8rem auto;
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      font-size: 1.1rem;
+    }
+    
+    .integration-title {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin: 2rem 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+      
+      nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: #111;
+        flex-direction: column;
+        padding: 1rem 0;
+        gap: 0;
+      }
+      
+      nav.active {
+        display: flex;
+      }
+      
+      nav a {
+        padding: 1rem 2rem;
+        margin: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      .hero {
+        padding: 4rem 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .plans-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .popular-plan {
+        transform: scale(1);
+      }
+      
+      .dashboard-mockup {
+        margin-top: 2rem;
+      }
+      
+      section {
+        padding: 3rem 1rem;
+      }
+      
+      .integration-types {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .integration-type {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .exchange-logo {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">ZION</div>
+    <nav id="navMenu">
+      <a href="#sobre">Sobre</a>
+      <a href="#funcionalidades">Funcionalidades</a>
+      <a href="#planos">Planos</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
+
+  <section class="hero" data-aos="fade-up">
+    <h1>Transforme seu tempo em lucro — de forma automática e segura.</h1>
+    <p>
+      Com Zion, você coloca sua estratégia no piloto automático. Conecte suas carteiras e corretoras favoritas, mantenha a custódia dos seus fundos, e deixe que a tecnologia opere por você — 24 horas por dia.
+      <br><br>
+      <strong>Sem riscos desnecessários. Sem decisões impulsivas. 100% sob seu controle.</strong>
+    </p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary">
+        <i class="fas fa-rocket"></i> Comece Agora
+      </button>
+      <button class="btn btn-secondary">
+        <i class="fas fa-play-circle"></i> Ver Demonstração
+      </button>
+    </div>
+  </section>
+
+  <section class="integrations" data-aos="fade-up">
+    <h2 class="section-title">Integrações</h2>
+    <p class="section-subtitle">
+      Conecte-se com as maiores exchanges e carteiras do mercado. Com a Zion, você tem um cockpit único para operar em múltiplas plataformas e DEXs sem perder a soberania sobre seu dinheiro.
+    </p>
+    
+    <div class="integration-types">
+      <div class="integration-type">
+        <h3><i class="fas fa-exchange-alt"></i> Exchanges Centralizadas (CEX)</h3>
+        <div class="integrations-grid">
+          <div class="exchange-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance">
+            <span>Binance</span>
+          </div>
+          <div class="exchange-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Coinbase_logo.png" alt="Coinbase">
+            <span>Coinbase</span>
+          </div>
+          <div class="exchange-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Kraken_logo.svg" alt="Kraken">
+            <span>Kraken</span>
+          </div>
+          <div class="exchange-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Bybit_logo.svg" alt="Bybit">
+            <span>Bybit</span>
+          </div>
+          <div class="exchange-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Kucoin_logo.svg" alt="KuCoin">
+            <span>KuCoin</span>
+          </div>
+          <div class="exchange-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Bitget-new-logo.png" alt="Bitget">
+            <span>Bitget</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="integration-type">
+        <h3><i class="fas fa-wallet"></i> Carteiras (Wallets)</h3>
+        <div class="integrations-grid">
+          <div class="exchange-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="MetaMask">
+            <span>MetaMask</span>
+          </div>
+          <div class="exchange-logo">
+            <img src="https://trustwallet.com/assets/images/media/assets/TWT.png" alt="Trust Wallet">
+            <span>Trust Wallet</span>
+          </div>
+          <div class="exchange-logo">
+            <img src="https://cryptologos.cc/logos/ledger-logo.png" alt="Ledger">
+            <span>Ledger</span>
+          </div>
+          <div class="exchange-logo">
+            <img src="https://cryptologos.cc/logos/trezor-logo.png" alt="Trezor">
+            <span>Trezor</span>
+          </div>
+          <div class="exchange-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Phantom_%28cryptocurrency%29_Logo.png" alt="Phantom">
+            <span>Phantom</span>
+          </div>
+          <div class="exchange-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Coinbase_Wallet_Logo.png" alt="Coinbase Wallet">
+            <span>Coinbase Wallet</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <p style="max-width: 800px; margin: 2rem auto; color: var(--text-muted);">
+      <i class="fas fa-info-circle"></i> A Zion integra-se diretamente com suas carteiras via APIs seguras, permitindo que você interaja com DEXs (Decentralized Exchanges) de forma automatizada enquanto mantém total controle sobre seus fundos.
+    </p>
+    
+    <button class="btn btn-primary">
+      <i class="fas fa-plug"></i> Explorar Todas as Integrações
+    </button>
+</section>
+
+  <section id="sobre" data-aos="fade-up">
+    <h2 class="section-title">Sobre a Zion</h2>
+    <p class="section-subtitle">
+      Zion nasceu da frustração de traders experientes com bots limitados, travas de corretoras e plataformas que exigem depósito para funcionar.
+    </p>
+    
+    <div class="about-container">
+      <div class="about-content">
+        <p style="margin-bottom: 1.5rem;">
+          Criamos uma solução diferente: você conecta sua carteira ou corretora via API, define as regras e deixa o bot fazer o trabalho — sem abrir mão do controle.
+        </p>
+        <p>
+          Queremos empoderar o trader da nova geração com liberdade, agilidade e automação real. Nossa plataforma oferece:
+        </p>
+        <ul style="list-style: none; padding: 0; margin-top: 1.5rem;">
+          <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;">
+            <i class="fas fa-shield-alt" style="color: var(--primary);"></i>
+            <span>Segurança máxima com criptografia de ponta a ponta</span>
+          </li>
+          <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;">
+            <i class="fas fa-bolt" style="color: var(--primary);"></i>
+            <span>Execução de trades em milissegundos</span>
+          </li>
+          <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;">
+            <i class="fas fa-sync-alt" style="color: var(--primary);"></i>
+            <span>Atualizações em tempo real do mercado</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="dashboard-mockup">
+        <div class="dashboard-content">
+          <div class="dashboard-header">
+            <div class="dashboard-title">Dashboard de Desempenho</div>
+            <div class="dashboard-stats">
+              <div class="stat-card">
+                <div class="stat-value">+12.4%</div>
+                <div class="stat-label">ROI Mensal</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">97.3%</div>
+                <div class="stat-label">Sucesso</div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-container">
+            <svg class="chart" viewBox="0 0 500 200" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(0, 224, 255, 0.2)" />
+                  <stop offset="100%" stop-color="rgba(0, 224, 255, 0.01)" />
+                </linearGradient>
+              </defs>
+              <path d="M0,150 Q125,50 250,120 Q375,190 500,100 L500,200 L0,200 Z" fill="url(#areaGradient)"></path>
+              <path class="chart-path" d="M0,150 Q125,50 250,120 Q375,190 500,100" stroke="#00e0ff" stroke-width="2" fill="none"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="funcionalidades" class="features" data-aos="fade-up">
+    <h2 class="section-title">Funcionalidades</h2>
+    <p class="section-subtitle">
+      Descubra como a Zion pode automatizar sua estratégia e maximizar seus resultados
+    </p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3>Inteligência de Mercado</h3>
+        <p>Análise de mercado em tempo real com algoritmos avançados para identificar oportunidades.</p>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Alertas de oportunidades em tempo real</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Análise técnica automatizada</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Recomendações personalizadas</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-robot"></i>
+        </div>
+        <h3>Automação Completa</h3>
+        <p>Configure suas estratégias e deixe o bot operar por você 24 horas por dia.</p>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Operação contínua sem interrupções</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Execução de ordens em milissegundos</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Gerenciamento de risco automatizado</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>Análise de Desempenho</h3>
+        <p>Acompanhe seus resultados com relatórios detalhados e métricas avançadas.</p>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Dashboard interativo</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Relatórios de lucro e perda</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span>Análise de histórico de trades</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="planos" class="plans" data-aos="fade-up">
+    <h2 class="section-title">Planos</h2>
+    <p class="section-subtitle">
+      Escolha o plano ideal para suas necessidades de trading
+    </p>
+    
+    <div class="plans-container">
+      <div class="plan-card">
+        <h3>Starter</h3>
+        <p style="color: var(--text-muted);">Ideal para iniciantes</p>
+        <div class="plan-price">R$29/mês</div>
+        <ul>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>1 Estratégia ativa</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Acesso às integrações básicas</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Suporte via e-mail</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Relatórios básicos</span>
+          </li>
+        </ul>
+        <button class="btn btn-secondary" style="width: 100%;">
+          <i class="fas fa-shopping-cart"></i> Assinar Plano
+        </button>
+      </div>
+      
+      <div class="plan-card popular-plan">
+        <div class="popular-badge">POPULAR</div>
+        <h3>Pro Trader</h3>
+        <p style="color: var(--text-muted);">Para traders ativos</p>
+        <div class="plan-price">R$89/mês</div>
+        <ul>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Estratégias ilimitadas</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Sinais personalizados</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Suporte prioritário 24/7</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Análises avançadas</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Backtesting de estratégias</span>
+          </li>
+        </ul>
+        <button class="btn btn-primary" style="width: 100%;">
+          <i class="fas fa-rocket"></i> Comece Agora
+        </button>
+      </div>
+      
+      <div class="plan-card">
+        <h3>Enterprise</h3>
+        <p style="color: var(--text-muted);">Para instituições</p>
+        <div class="plan-price">Personalizado</div>
+        <ul>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Todos os recursos Pro</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Conta multi-usuário</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>API personalizada</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Suporte dedicado</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Treinamento para equipe</span>
+          </li>
+        </ul>
+        <button class="btn btn-secondary" style="width: 100%;">
+          <i class="fas fa-headset"></i> Fale Conosco
+        </button>
+      </div>
+    </div>
+    
+    <p style="color: var(--text-muted); text-align: center; margin-top: 1.5rem;">
+      Teste grátis por 7 dias. Cancele a qualquer momento.
+    </p>
+  </section>
+
+  <section id="depoimentos" class="testimonials" data-aos="fade-up">
+    <h2 class="section-title">Depoimentos</h2>
+    <p class="section-subtitle">
+      Veja o que nossos clientes dizem sobre a plataforma Zion
+    </p>
+    
+    <div class="testimonials-container">
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "A Zion revolucionou minha forma de operar. Com a automação, consigo executar estratégias complexas enquanto trabalho em outros projetos. Meu ROI aumentou 35% desde que comecei a usar."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">CR</div>
+            <div class="author-info">
+              <h4>Carlos Rocha</h4>
+              <p>Trader Profissional</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <p class="testimonial-text">
+            "Como iniciante, estava perdido com tantas plataformas complexas. A Zion me deu a segurança e automação que precisava. A interface é intuitiva e o suporte é excelente!"
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AM</div>
+            <div class="author-info">
+              <h4>Amanda Oliveira</h4>
+              <p>Trader Iniciante</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "A integração com múltiplas exchanges e carteiras foi decisiva para minha escolha. Posso gerenciar todas minhas operações de um único lugar, com segurança total sobre meus fundos. Simplesmente fantástico!"
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RS</div>
+            <div class="author-info">
+              <h4>Ricardo Silva</h4>
+              <p>Investidor Institucional</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" data-aos="fade-up" style="background-color: #111; text-align: center;">
+    <h2 class="section-title">Contato</h2>
+    <p class="section-subtitle">
+      Tem dúvidas ou quer falar com nosso time?
+    </p>
+    
+    <div style="max-width: 600px; margin: 0 auto;">
+      <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem;">
+        <div>
+          <i class="fas fa-envelope" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+          <p style="color: var(--text-light); font-size: 1.2rem;">contato@ziontrading.io</p>
+        </div>
+        
+        <div>
+          <i class="fab fa-twitter" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+          <p style="color: var(--text-light); font-size: 1.2rem;">@ziontrading</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">ZION</div>
+      <p style="max-width: 600px; margin: 0 auto 1.5rem;">
+        Transformando traders com automação inteligente e segura. Mantenha o controle total dos seus fundos enquanto nossa tecnologia trabalha para você.
+      </p>
+      
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-telegram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-discord"></i></a>
+      </div>
+      
+      <p style="margin-top: 2rem; color: var(--text-muted);">
+        © 2025 Zion - Todos os direitos reservados
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+    
+    // Menu mobile
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+    
+    // Fechar menu ao clicar em um link
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
